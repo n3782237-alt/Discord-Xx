@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discord X</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="auth" class="auth-shell">
+    <div class="auth-card">
+      <div class="brand-mark">X</div>
+      <h1>Добро пожаловать в Discord X</h1>
+      <p class="muted">Общайся, создавай сообщества и оставайся на связи.</p>
+      <div class="tabs"><button class="tab active" data-tab="login">Войти</button><button class="tab" data-tab="register">Регистрация</button></div>
+      <form id="loginForm" class="auth-form">
+        <label>Email<input id="loginEmail" type="email" required placeholder="name@example.com"></label>
+        <label>Пароль<input id="loginPassword" type="password" required placeholder="Ваш пароль"></label>
+        <button class="primary">Войти</button>
+      </form>
+      <form id="registerForm" class="auth-form hidden">
+        <label>Имя пользователя<input id="regName" required minlength="2" maxlength="24" placeholder="Ваш ник"></label>
+        <label>Email<input id="regEmail" type="email" required placeholder="name@example.com"></label>
+        <label>Пароль<input id="regPassword" type="password" required minlength="8" placeholder="Минимум 8 символов"></label>
+        <button class="primary">Создать аккаунт</button>
+      </form>
+      <form id="verifyForm" class="auth-form hidden">
+        <p class="muted">Введите шестизначный код, отправленный на вашу почту.</p>
+        <label>Email<input id="verifyEmail" type="email" required></label>
+        <label>Код подтверждения<input id="verifyCode" inputmode="numeric" maxlength="6" required placeholder="000000"></label>
+        <button class="primary">Подтвердить почту</button>
+      </form>
+      <div id="authNotice" class="notice"></div>
+      <small class="muted">Продолжая, вы создаёте аккаунт Discord X.</small>
+    </div>
+  </div>
+
+  <div id="app" class="app hidden">
+    <aside class="guild-rail">
+      <div class="guild-logo selected">X</div>
+      <div id="guildList"></div>
+      <button id="addServer" class="guild-add" title="Создать сервер">+</button>
+      <button id="logout" class="guild-add logout" title="Выйти">↪</button>
+    </aside>
+    <aside class="sidebar">
+      <div class="sidebar-head"><strong>Discord X</strong><span class="online-dot"></span></div>
+      <div class="user-card"><div class="avatar" id="avatar">U</div><div class="user-meta"><b id="myName">Пользователь</b><small id="myTier">FREE</small></div><button id="openPremium" class="icon-btn" title="Подписки">◆</button></div>
+      <div class="section-title">ТЕКСТОВЫЕ КАНАЛЫ <button id="addText" class="tiny">+</button></div>
+      <div id="textChannels" class="channel-list"></div>
+      <div class="section-title">ГОЛОСОВЫЕ КАНАЛЫ <button id="addVoice" class="tiny">+</button></div>
+      <div id="voiceChannels" class="channel-list"></div>
+      <div class="wallet"><span>◈ X-Coins</span><b id="coins">100</b></div>
+    </aside>
+    <main class="main">
+      <header class="topbar"><div><span class="hash">#</span><b id="channelTitle">general</b></div><div class="top-actions"><span id="connectionState">● Подключение</span><button id="premiumTop" class="premium-button">◆ Premium</button></div></header>
+      <section id="chatView" class="chat-view">
+        <div id="messages" class="messages"><div class="welcome"><div class="welcome-icon">#</div><h2>Добро пожаловать!</h2><p>Это начало канала. Напиши первое сообщение.</p></div></div>
+        <form id="messageForm" class="message-form"><button type="button" class="attach">+</button><input id="messageInput" autocomplete="off" placeholder="Написать сообщение в #general..." maxlength="4000"><button class="send">➤</button></form>
+      </section>
+      <section id="callView" class="call-view hidden">
+        <div class="call-panel"><div class="call-orb">X</div><h2 id="callTitle">Голосовой канал</h2><p id="callStatus" class="muted">Вы ещё не подключились</p><div id="remotePeers" class="peer-list"></div><div class="call-controls"><button id="joinCall" class="primary">Подключиться</button><button id="toggleVideo" class="control" disabled>Камера</button><button id="toggleMute" class="control" disabled>Микрофон</button><button id="leaveCall" class="danger" disabled>Отключиться</button></div><div id="videos" class="videos"></div></div>
+      </section>
+    </main>
+    <aside class="members"><div class="members-title">УЧАСТНИКИ — 1</div><div class="member"><div class="avatar small" id="memberAvatar">U</div><span id="memberName">Пользователь</span><i></i></div><div class="promo"><b>Discord X Premium</b><p>Открой дополнительные возможности профиля.</p><button id="promoPremium">Подробнее</button></div></aside>
+  </div>
+  <div id="modal" class="modal hidden"><div class="modal-card"><button id="closeModal" class="modal-close">×</button><div id="modalContent"></div></div></div>
+  <script src="https://cdn.socket.io/4.8.1/socket.io.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
