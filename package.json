@@ -18,7 +18,7 @@
     "appId": "com.discordx.desktop",
     "productName": "Discord X",
     "files": ["main.js", "preload.js", "renderer/**/*", "node_modules/**/*"],
-    "win": { "target": ["nsis"], "icon": "assets/icon.ico" },
+    "win": { "target": ["nsis"] },
     "nsis": { "oneClick": false, "allowToChangeInstallationDirectory": true }
   }
 }
